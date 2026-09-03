@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { Menu, X, Phone, MessageCircle, Calendar } from 'lucide-react';
+import { Menu, X, ArrowRight, Sparkles, Send } from 'lucide-react';
 import VibeLogo from './VibeLogo';
-import { PROFILE } from '../utils/constants';
 
 export default function Navbar({ onOpenBooking }) {
   const [scrolled, setScrolled] = useState(false);
@@ -16,12 +15,12 @@ export default function Navbar({ onOpenBooking }) {
   }, []);
 
   const navLinks = [
-    { label: 'About', href: '#about' },
+    { label: 'About Agency', href: '#about' },
     { label: 'Services', href: '#services' },
+    { label: 'Careers & Vacancies', href: '#opportunities' },
     { label: 'Process', href: '#process' },
-    { label: 'Digital Card', href: '#card' },
     { label: 'FAQ', href: '#faq' },
-    { label: 'Contact', href: '#contact' },
+    { label: 'Contact Portal', href: '#contact' },
   ];
 
   return (
@@ -54,20 +53,12 @@ export default function Navbar({ onOpenBooking }) {
         {/* Desktop CTA actions */}
         <div className="hidden sm:flex items-center gap-3">
           <a
-            href={`tel:${PROFILE.rawPhone}`}
-            className="flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-slate-50 border border-slate-200 text-xs font-bold text-slate-700 hover:bg-slate-100 hover:text-slate-900 transition-colors"
+            href="#contact"
+            className="flex items-center gap-2 px-5 py-2.5 rounded-xl bg-slate-900 hover:bg-slate-800 text-white text-xs sm:text-sm font-bold shadow-sm hover:shadow transition-all"
           >
-            <Phone className="w-3.5 h-3.5 text-gold-600" />
-            <span>{PROFILE.phone}</span>
+            <Send className="w-3.5 h-3.5 text-gold-400" />
+            <span>Apply / Contact Us</span>
           </a>
-
-          <button
-            onClick={onOpenBooking}
-            className="flex items-center gap-2 px-4 py-2 rounded-xl bg-slate-900 hover:bg-slate-800 text-white text-xs sm:text-sm font-bold shadow-sm hover:shadow transition-all"
-          >
-            <Calendar className="w-4 h-4 text-gold-400 stroke-[2.5]" />
-            <span>Connect with Vijay</span>
-          </button>
         </div>
 
         {/* Mobile menu hamburger */}
@@ -93,24 +84,14 @@ export default function Navbar({ onOpenBooking }) {
               {link.label}
             </a>
           ))}
-          <div className="pt-4 border-t border-slate-100 flex flex-col gap-2">
-            <button
-              onClick={() => {
-                setMobileMenuOpen(false);
-                onOpenBooking();
-              }}
-              className="w-full py-2.5 rounded-xl bg-slate-900 text-white font-bold text-center text-sm"
-            >
-              Connect with Vijay
-            </button>
+          <div className="pt-4 border-t border-slate-100">
             <a
-              href={PROFILE.whatsappUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="w-full py-2.5 rounded-xl bg-[#25D366] text-slate-950 font-bold text-center text-sm flex items-center justify-center gap-2"
+              href="#contact"
+              onClick={() => setMobileMenuOpen(false)}
+              className="w-full py-2.5 rounded-xl bg-slate-900 text-white font-bold text-center text-sm flex items-center justify-center gap-2"
             >
-              <MessageCircle className="w-4 h-4" />
-              Chat on WhatsApp
+              <Send className="w-4 h-4 text-gold-400" />
+              <span>Apply / Contact Portal</span>
             </a>
           </div>
         </div>

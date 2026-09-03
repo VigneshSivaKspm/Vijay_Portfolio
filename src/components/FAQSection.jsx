@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import { ChevronDown, HelpCircle, MessageCircle } from 'lucide-react';
-import { FAQS, PROFILE } from '../utils/constants';
+import { ChevronDown, HelpCircle, ArrowRight } from 'lucide-react';
+import { FAQS } from '../utils/constants';
 
-export default function FAQSection({ onOpenBooking }) {
+export default function FAQSection() {
   const [openIndex, setOpenIndex] = useState(0);
 
   const toggleFAQ = (index) => {
@@ -23,7 +23,7 @@ export default function FAQSection({ onOpenBooking }) {
             Frequently Asked <span className="text-gold-gradient">Questions</span>
           </h2>
           <p className="text-slate-600 text-sm sm:text-base mt-2">
-            Common details regarding creator scouting, brand engagements, and representation at Vibe Media Networks.
+            Essential information regarding job vacancies, talent scouting, and agency engagements.
           </p>
         </div>
 
@@ -42,7 +42,7 @@ export default function FAQSection({ onOpenBooking }) {
               >
                 <button
                   onClick={() => toggleFAQ(idx)}
-                  className="w-full p-6 text-left flex items-center justify-between gap-4 select-none"
+                  className="w-full p-6 text-left flex items-center justify-between gap-4 select-none cursor-pointer"
                 >
                   <span className="text-base sm:text-lg font-bold text-slate-900 font-display">
                     {faq.q}
@@ -66,21 +66,19 @@ export default function FAQSection({ onOpenBooking }) {
           })}
         </div>
 
-        {/* Quick WhatsApp helper bar */}
+        {/* Contact redirection bar */}
         <div className="mt-12 text-center p-6 rounded-2xl bg-slate-50 border border-slate-200 flex flex-col sm:flex-row items-center justify-between gap-4">
           <div className="text-left">
-            <h4 className="text-base font-bold text-slate-900 font-display">Have a question not covered here?</h4>
-            <p className="text-xs text-slate-500 mt-0.5">Feel free to message S. Vijay directly on WhatsApp.</p>
+            <h4 className="text-base font-bold text-slate-900 font-display">Have a specific question not covered here?</h4>
+            <p className="text-xs text-slate-500 mt-0.5">Submit your inquiry directly through our official contact form.</p>
           </div>
           
           <a
-            href={PROFILE.whatsappUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="shrink-0 inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-[#25D366] text-slate-950 font-bold text-xs sm:text-sm hover:brightness-105 transition-all"
+            href="#contact"
+            className="shrink-0 inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-slate-900 hover:bg-slate-800 text-white font-bold text-xs sm:text-sm transition-all"
           >
-            <MessageCircle className="w-4 h-4" />
-            <span>Chat on WhatsApp</span>
+            <span>Go to Contact Form</span>
+            <ArrowRight className="w-4 h-4 text-gold-400" />
           </a>
         </div>
 
