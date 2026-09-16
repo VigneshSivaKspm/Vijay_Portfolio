@@ -8,7 +8,6 @@ import {
   Sparkles,
   Building2,
   MapPin,
-  Briefcase,
   UserCheck,
   ShieldCheck,
 } from "lucide-react";
@@ -126,35 +125,6 @@ export default function ContactSection() {
 
         {/* Contact Form Card */}
         <div className="bg-white border border-slate-200/90 rounded-3xl p-6 sm:p-10 shadow-card">
-          {/* Top category pill selection */}
-          <div className="mb-8 p-4 rounded-2xl bg-slate-50 border border-slate-200/80">
-            <div className="text-xs font-bold uppercase tracking-wider text-slate-700 mb-3 flex items-center gap-2">
-              <Briefcase className="w-4 h-4 text-gold-600" />
-              <span>Select Your Area of Interest / Opportunity</span>
-            </div>
-            <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
-              {OPPORTUNITY_CATEGORIES.map((cat) => (
-                <button
-                  type="button"
-                  key={cat}
-                  onClick={() =>
-                    setFormData((prev) => ({
-                      ...prev,
-                      opportunityCategory: cat,
-                    }))
-                  }
-                  className={`p-2.5 rounded-xl text-xs font-bold text-left transition-all ${
-                    formData.opportunityCategory === cat
-                      ? "bg-slate-900 text-white shadow-sm"
-                      : "bg-white border border-slate-200 text-slate-700 hover:border-slate-300"
-                  }`}
-                >
-                  {cat}
-                </button>
-              ))}
-            </div>
-          </div>
-
           {/* Success Banner */}
           {successMessage && (
             <div className="mb-8 p-6 rounded-2xl bg-emerald-50 border border-emerald-200 flex items-start gap-4 animate-fade-in">
