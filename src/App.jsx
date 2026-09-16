@@ -1,13 +1,13 @@
-import React from 'react';
-import Navbar from './components/Navbar';
-import Hero from './components/Hero';
-import About from './components/About';
-import Opportunities from './components/Opportunities';
-import Services from './components/Services';
-import Process from './components/Process';
-import FAQSection from './components/FAQSection';
-import ContactSection from './components/ContactSection';
-import Footer from './components/Footer';
+import React from "react";
+import Navbar from "./components/Navbar";
+import Hero from "./components/Hero";
+import About from "./components/About";
+import Opportunities from "./components/Opportunities";
+import Services from "./components/Services";
+import Process from "./components/Process";
+import FAQSection from "./components/FAQSection";
+import ContactSection from "./components/ContactSection";
+import Footer from "./components/Footer";
 
 export default function App() {
   return (

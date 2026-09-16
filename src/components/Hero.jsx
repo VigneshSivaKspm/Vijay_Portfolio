@@ -1,7 +1,17 @@
-import React from 'react';
-import { ArrowRight, CheckCircle2, ShieldCheck, TrendingUp, Sparkles, Briefcase, Users, PhoneCall, Laptop } from 'lucide-react';
-import VibeLogo from './VibeLogo';
-import { AGENCY } from '../utils/constants';
+import React from "react";
+import {
+  ArrowRight,
+  CheckCircle2,
+  ShieldCheck,
+  TrendingUp,
+  Sparkles,
+  Briefcase,
+  Users,
+  PhoneCall,
+  Laptop,
+} from "lucide-react";
+import VibeLogo from "./VibeLogo";
+import { AGENCY } from "../utils/constants";
 
 export default function Hero() {
   return (
@@ -12,13 +22,14 @@ export default function Hero() {
 
       <div className="max-w-7xl mx-auto">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-          
           {/* Left Hero Column */}
           <div className="lg:col-span-7 text-center lg:text-left">
             {/* Status Pill */}
             <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-gold-50 border border-gold-300/60 text-gold-800 text-xs sm:text-sm font-semibold mb-6 shadow-sm">
               <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
-              <span>{AGENCY.name} • {AGENCY.tagline}</span>
+              <span>
+                {AGENCY.name} • {AGENCY.tagline}
+              </span>
             </div>
 
             {/* Main Headline */}
@@ -31,7 +42,11 @@ export default function Hero() {
 
             {/* Agency Statement */}
             <p className="mt-4 text-base sm:text-lg text-slate-600 max-w-2xl mx-auto lg:mx-0 leading-relaxed">
-              We connect digital creators with leading brands, execute influencer marketing campaigns, and offer active career openings in <strong>Marketing</strong>, <strong>Telecalling</strong>, <strong>Work From Home</strong>, and <strong>Freelancing</strong> across India.
+              We connect digital creators with leading brands, execute
+              influencer marketing campaigns, and offer active career openings
+              in <strong>Marketing</strong>, <strong>Telecalling</strong>,{" "}
+              <strong>Work From Home</strong>, and <strong>Freelancing</strong>{" "}
+              across India.
             </p>
 
             {/* Opportunity Badges */}
@@ -77,7 +92,6 @@ export default function Hero() {
           <div className="lg:col-span-5 flex justify-center">
             <div className="relative w-full max-w-md">
               <div className="relative bg-white border border-slate-200/80 rounded-3xl p-6 sm:p-8 shadow-card hover:shadow-card-hover transition-all">
-                
                 {/* Agency Header */}
                 <div className="flex items-center justify-between border-b border-slate-100 pb-4 mb-6">
                   <VibeLogo size="small" />
@@ -90,26 +104,43 @@ export default function Hero() {
                   Active Agency Divisions
                 </h3>
                 <p className="text-xs text-slate-500 mb-5 font-medium">
-                  Select your profile category and reach out via our official form:
+                  Select your profile category and reach out via our official
+                  form:
                 </p>
 
                 {/* Division items */}
                 <div className="space-y-2.5 text-xs text-slate-700 mb-6">
                   <div className="flex items-center justify-between p-3 rounded-xl bg-slate-50 border border-slate-100">
-                    <span className="font-semibold text-slate-800">Marketing & Brand Campaigns</span>
-                    <span className="text-[11px] font-bold text-gold-700 bg-gold-50 px-2 py-0.5 rounded border border-gold-200">Open</span>
+                    <span className="font-semibold text-slate-800">
+                      Marketing & Brand Campaigns
+                    </span>
+                    <span className="text-[11px] font-bold text-gold-700 bg-gold-50 px-2 py-0.5 rounded border border-gold-200">
+                      Open
+                    </span>
                   </div>
                   <div className="flex items-center justify-between p-3 rounded-xl bg-slate-50 border border-slate-100">
-                    <span className="font-semibold text-slate-800">Telecalling & Outreach Roles</span>
-                    <span className="text-[11px] font-bold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded border border-emerald-200">Hiring</span>
+                    <span className="font-semibold text-slate-800">
+                      Telecalling & Outreach Roles
+                    </span>
+                    <span className="text-[11px] font-bold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded border border-emerald-200">
+                      Hiring
+                    </span>
                   </div>
                   <div className="flex items-center justify-between p-3 rounded-xl bg-slate-50 border border-slate-100">
-                    <span className="font-semibold text-slate-800">Work From Home (WFH) & Part-Time</span>
-                    <span className="text-[11px] font-bold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded border border-emerald-200">Active</span>
+                    <span className="font-semibold text-slate-800">
+                      Work From Home (WFH) & Part-Time
+                    </span>
+                    <span className="text-[11px] font-bold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded border border-emerald-200">
+                      Active
+                    </span>
                   </div>
                   <div className="flex items-center justify-between p-3 rounded-xl bg-slate-50 border border-slate-100">
-                    <span className="font-semibold text-slate-800">Creator Scouting & Media Rights</span>
-                    <span className="text-[11px] font-bold text-blue-700 bg-blue-50 px-2 py-0.5 rounded border border-blue-200">Scouting</span>
+                    <span className="font-semibold text-slate-800">
+                      Creator Scouting & Media Rights
+                    </span>
+                    <span className="text-[11px] font-bold text-blue-700 bg-blue-50 px-2 py-0.5 rounded border border-blue-200">
+                      Scouting
+                    </span>
                   </div>
                 </div>
 
@@ -128,7 +159,6 @@ export default function Hero() {
               </div>
             </div>
           </div>
-
         </div>
       </div>
     </section>

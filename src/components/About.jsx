@@ -1,13 +1,23 @@
-import React from 'react';
-import { Target, Users, Sparkles, Award, CheckCircle, Shield, ArrowRight } from 'lucide-react';
-import { AGENCY } from '../utils/constants';
+import React from "react";
+import {
+  Target,
+  Users,
+  Sparkles,
+  Award,
+  CheckCircle,
+  Shield,
+  ArrowRight,
+} from "lucide-react";
+import { AGENCY } from "../utils/constants";
 
 export default function About() {
   return (
-    <section id="about" className="py-24 px-4 sm:px-6 lg:px-8 bg-white border-b border-slate-200/60 relative">
+    <section
+      id="about"
+      className="py-24 px-4 sm:px-6 lg:px-8 bg-white border-b border-slate-200/60 relative"
+    >
       <div className="max-w-7xl mx-auto">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-          
           {/* Left Column: Agency Overview Card */}
           <div className="lg:col-span-5">
             <div className="relative rounded-3xl bg-slate-50 border border-slate-200/80 p-8 shadow-card">
@@ -18,15 +28,22 @@ export default function About() {
               <h3 className="text-2xl font-bold text-slate-900 font-display">
                 Agency Purpose & Vision
               </h3>
-              
+
               <p className="text-xs sm:text-sm text-slate-600 mt-3 leading-relaxed">
-                "We cultivate a dynamic media environment where creators gain sustainable brand sponsorships, brands discover genuine audience reach, and talented individuals find fulfilling remote and part-time careers."
+                "We cultivate a dynamic media environment where creators gain
+                sustainable brand sponsorships, brands discover genuine audience
+                reach, and talented individuals find fulfilling remote and
+                part-time careers."
               </p>
 
               <div className="mt-6 pt-6 border-t border-slate-200 flex items-center justify-between">
                 <div>
-                  <div className="text-base font-bold text-slate-900 font-display">{AGENCY.name}</div>
-                  <div className="text-xs text-gold-700 font-semibold">{AGENCY.tagline}</div>
+                  <div className="text-base font-bold text-slate-900 font-display">
+                    {AGENCY.name}
+                  </div>
+                  <div className="text-xs text-gold-700 font-semibold">
+                    {AGENCY.tagline}
+                  </div>
                 </div>
                 <span className="text-xs font-semibold px-2.5 py-1 rounded bg-slate-200/70 text-slate-800">
                   {AGENCY.location}
@@ -60,21 +77,34 @@ export default function About() {
             <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-gold-50 border border-gold-200 text-gold-800 text-xs font-bold uppercase tracking-wider mb-4">
               About The Agency
             </div>
-            
+
             <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-900 font-display tracking-tight leading-tight">
               Driving Digital Media Growth & <br className="hidden sm:block" />
-              <span className="text-gold-gradient">Empowering Emerging Talent</span>
+              <span className="text-gold-gradient">
+                Empowering Emerging Talent
+              </span>
             </h2>
 
             <div className="mt-6 space-y-4 text-slate-600 text-sm sm:text-base leading-relaxed">
               <p>
-                <strong>Vibe Media Networks</strong> operates as a full-service Digital Talent & Media Scouting Agency. We specialize in scouting digital creators across video platforms, managing influencer marketing activations, and creating decentralized employment opportunities.
+                <strong>Vibe Media Networks</strong> operates as a full-service
+                Digital Talent & Media Scouting Agency. We specialize in
+                scouting digital creators across video platforms, managing
+                influencer marketing activations, and creating decentralized
+                employment opportunities.
               </p>
               <p>
-                Headquartered in <strong>Tamil Nadu, India</strong>, our talent and candidate network spans pan-India. We provide comprehensive infrastructure for brands seeking authentic reach and candidates seeking flexible work-from-home, telecalling, part-time, and freelancing positions.
+                Headquartered in <strong>Tamil Nadu, India</strong>, our talent
+                and candidate network spans pan-India. We provide comprehensive
+                infrastructure for brands seeking authentic reach and candidates
+                seeking flexible work-from-home, telecalling, part-time, and
+                freelancing positions.
               </p>
               <p>
-                To maintain transparent and streamlined communication, all creator inquiries, partnership proposals, and job applications are processed exclusively through our centralized online contact gateway.
+                To maintain transparent and streamlined communication, all
+                creator inquiries, partnership proposals, and job applications
+                are processed exclusively through our centralized online contact
+                gateway.
               </p>
             </div>
 
@@ -96,7 +126,6 @@ export default function About() {
               </a>
             </div>
           </div>
-
         </div>
       </div>
     </section>
