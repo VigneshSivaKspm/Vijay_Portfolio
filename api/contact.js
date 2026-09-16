@@ -1,57 +1,54 @@
-import express from "express";
-import cors from "cors";
 import nodemailer from "nodemailer";
-import dotenv from "dotenv";
-import path from "path";
-import { fileURLToPath } from "url";
 
-dotenv.config();
-
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
-
-const app = express();
-const PORT = process.env.PORT || 5000;
-
-app.use(cors());
-app.use(express.json());
-
-// Create reusable transporter object using SMTP transport
 const createTransporter = () => {
   const host = process.env.SMTP_HOST || "smtp.gmail.com";
   const port = parseInt(process.env.SMTP_PORT || "465", 10);
   const user = process.env.SMTP_USER;
   const rawPass = process.env.SMTP_PASS || "";
+  // Clean app password: remove spaces and accidental outer quotes
   const pass = rawPass.replace(/["']/g, "").replace(/\s+/g, "");
 
-  if (user && pass) {
-    return nodemailer.createTransport({
-      host,
-      port,
-      secure: port === 465,
-      auth: {
-        user,
-        pass,
-      },
-    });
+  if (!user || !pass) {
+    return null;
   }
 
-  // Fallback test transporter (creates preview in console or ethereal)
-  return null;
+  return nodemailer.createTransport({
+    host,
+    port,
+    secure: port === 465,
+    auth: {
+      user,
+      pass,
+    },
+  });
 };
 
-// Health Check
-app.get("/api/health", (req, res) => {
-  res.json({
-    status: "ok",
-    service: "Vibe Media Networks Contact & Application API",
-    time: new Date().toISOString(),
-  });
-});
+export default async function handler(req, res) {
+  // CORS headers
+  res.setHeader("Access-Control-Allow-Credentials", "true");
+  res.setHeader("Access-Control-Allow-Origin", "*");
+  res.setHeader(
+    "Access-Control-Allow-Methods",
+    "GET,OPTIONS,PATCH,DELETE,POST,PUT",
+  );
+  res.setHeader(
+    "Access-Control-Allow-Headers",
+    "X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version",
+  );
 
-// Contact Form / Job Application API
-app.post("/api/contact", async (req, res) => {
+  if (req.method === "OPTIONS") {
+    return res.status(200).end();
+  }
+
+  if (req.method !== "POST") {
+    return res
+      .status(405)
+      .json({ success: false, error: "Method Not Allowed" });
+  }
+
   try {
+    const body =
+      typeof req.body === "string" ? JSON.parse(req.body) : req.body || {};
     const {
       name,
       contactNumber,
@@ -64,7 +61,7 @@ app.post("/api/contact", async (req, res) => {
       state,
       district,
       fullAddress,
-    } = req.body;
+    } = body;
 
     // Field validations
     if (
@@ -154,7 +151,7 @@ app.post("/api/contact", async (req, res) => {
 
             <h3 style="font-size: 14px; color: #475569; text-transform: uppercase; margin-bottom: 5px;">Message / Content</h3>
             <div class="message-box">
-              ${content.replace(/\n/g, "<br/>")}
+              ${(content || "").replace(/\n/g, "<br/>")}
             </div>
           </div>
           <div class="footer">
@@ -169,33 +166,24 @@ app.post("/api/contact", async (req, res) => {
     const recipient =
       process.env.RECIPIENT_EMAIL || "directorvijay225@gmail.com";
 
-    if (transporter) {
-      await transporter.sendMail({
-        from: `"Vibe Media Networks" <${process.env.SMTP_USER}>`,
-        to: recipient,
-        replyTo: email,
-        subject: `[Vibe Portal] ${opportunityCategory}: ${subject} (${name})`,
-        html: emailHtml,
+    if (!transporter) {
+      console.error(
+        "[Email Error] SMTP_USER or SMTP_PASS not set in environment.",
+      );
+      return res.status(500).json({
+        success: false,
+        error:
+          "SMTP credentials not configured on server. Please check environment variables in Vercel.",
       });
-      console.log(
-        `[Email Delivered] From ${name} (${email}) for ${opportunityCategory}`,
-      );
-    } else {
-      console.log(
-        "--- [SIMULATED NODEMAILER DISPATCH - Set SMTP_USER & SMTP_PASS in .env for live dispatch] ---",
-      );
-      console.log(`To: ${recipient}`);
-      console.log(`From: ${name} <${email}>`);
-      console.log(`Phone: ${contactNumber}`);
-      console.log(`Category: ${opportunityCategory} | Work Mode: ${workMode}`);
-      console.log(`Location: ${district}, ${state}`);
-      console.log(`Address: ${fullAddress}`);
-      console.log(`Subject: ${subject}`);
-      console.log(`Content: ${content}`);
-      console.log(
-        "---------------------------------------------------------------------------------------------",
-      );
     }
+
+    await transporter.sendMail({
+      from: `"Vibe Media Networks" <${process.env.SMTP_USER}>`,
+      to: recipient,
+      replyTo: email,
+      subject: `[Vibe Portal] ${opportunityCategory}: ${subject} (${name})`,
+      html: emailHtml,
+    });
 
     return res.status(200).json({
       success: true,
@@ -203,17 +191,12 @@ app.post("/api/contact", async (req, res) => {
         "Your inquiry / application has been submitted successfully to Vibe Media Networks.",
     });
   } catch (error) {
-    console.error("Error handling contact form submission:", error);
+    console.error("Error in contact handler:", error);
     return res.status(500).json({
       success: false,
       error:
-        "An internal error occurred while transmitting your submission. Please try again.",
+        error.message ||
+        "An internal error occurred while transmitting your submission.",
     });
   }
-});
-
-app.listen(PORT, () => {
-  console.log(
-    `🚀 Vibe Media Networks Backend Server running on http://localhost:${PORT}`,
-  );
-});
+}

@@ -58,7 +58,18 @@ export default function ContactSection() {
         body: JSON.stringify(formData),
       });
 
-      const data = await response.json();
+      let data = {};
+      const contentType = response.headers.get("content-type");
+      if (contentType && contentType.includes("application/json")) {
+        data = await response.json();
+      } else {
+        const text = await response.text();
+        throw new Error(
+          response.status === 404
+            ? "Endpoint /api/contact was not found (404). Please verify your deployment."
+            : text || `Server error (${response.status})`,
+        );
+      }
 
       if (response.ok && data.success) {
         setSuccessMessage(
@@ -94,7 +105,8 @@ export default function ContactSection() {
     } catch (err) {
       console.error("Submission error:", err);
       setErrorMessage(
-        "Network connection error. Please ensure the backend server is running and try again.",
+        err.message ||
+          "Network connection error. Please ensure the backend server is running and try again.",
       );
     } finally {
       setLoading(false);
